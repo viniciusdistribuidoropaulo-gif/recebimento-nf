@@ -16,29 +16,21 @@ font-family:Arial;
 background:#f3f4f6;
 }
 
-
 .container{
-
 padding:10px;
-
 }
-
 
 .card{
 
 background:white;
 border-radius:12px;
 padding:15px;
-margin-bottom:15px;
-box-shadow:0 3px 10px rgba(0,0,0,.1);
+box-shadow:0 3px 15px rgba(0,0,0,.10);
 
 }
 
-
 h1{
-
 text-align:center;
-
 }
 
 
@@ -50,30 +42,30 @@ padding:12px 0;
 }
 
 
-.codigo{
+.produto{
 
+font-weight:bold;
 color:#2563eb;
+
+}
+
+
+button{
+
+width:100%;
+padding:14px;
+margin-top:15px;
+border:0;
+border-radius:8px;
+background:#2563eb;
+color:white;
+font-size:17px;
 font-weight:bold;
 
 }
 
 
-.voltar{
-
-display:block;
-background:#2563eb;
-color:white;
-text-align:center;
-padding:15px;
-border-radius:8px;
-text-decoration:none;
-margin-bottom:15px;
-
-}
-
-
 </style>
-
 
 </head>
 
@@ -83,17 +75,27 @@ margin-bottom:15px;
 
 <div class="container">
 
-
-<a class="voltar" href="app.html">
-⬅ Voltar
-</a>
+<div class="card">
 
 
 <h1>📋 Relatório do Dia</h1>
 
 
-<div id="lista"></div>
+<div id="lista">
 
+Carregando...
+
+</div>
+
+
+<button onclick="voltar()">
+
+⬅ VOLTAR
+
+</button>
+
+
+</div>
 
 </div>
 
@@ -107,7 +109,7 @@ const API =
 
 
 
-fetch(API+"?acao=relatorio")
+fetch(API+"?relatorio=hoje")
 
 
 .then(res=>res.json())
@@ -119,15 +121,7 @@ fetch(API+"?acao=relatorio")
 let lista=document.getElementById("lista");
 
 
-if(dados.length==0){
-
-lista.innerHTML=
-"<div class='card'>Nenhum recebimento hoje.</div>";
-
-return;
-
-}
-
+lista.innerHTML="";
 
 
 dados.forEach(r=>{
@@ -135,58 +129,44 @@ dados.forEach(r=>{
 
 lista.innerHTML += `
 
-
-<div class="card">
-
-
 <div class="item">
 
+<div>
 <b>NF:</b> ${r.nf}
-
 </div>
 
 
-<div class="item">
+<div class="produto">
+${r.produto}
+</div>
 
-<div class="codigo">
+
+<div>
 Código: ${r.codigo}
 </div>
 
-${r.produto}
 
+<div>
+Quantidade: ${r.quantidade}
 </div>
 
 
-<div class="item">
-
-<b>Quantidade:</b> ${r.quantidade}
-
+<div>
+Usuário: ${r.usuario}
 </div>
 
 
-<div class="item">
-
-<b>Lote:</b> ${r.lote || "-"}
-
+<div>
+Lote: ${r.lote}
 </div>
 
 
-<div class="item">
-
-<b>Validade:</b> ${r.validade || "-"}
-
-</div>
-
-
-<div class="item">
-
-👤 ${r.usuario}
-
+<div>
+Validade: ${r.validade}
 </div>
 
 
 </div>
-
 
 `;
 
@@ -199,10 +179,21 @@ ${r.produto}
 
 .catch(()=>{
 
+
 document.getElementById("lista").innerHTML=
 "Erro ao carregar relatório";
 
+
 });
+
+
+
+
+function voltar(){
+
+window.location.href="app.html";
+
+}
 
 
 </script>
