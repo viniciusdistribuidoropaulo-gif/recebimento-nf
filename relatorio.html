@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Relatório do Dia</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#f3f4f6;
+}
+
+
+.container{
+
+padding:10px;
+
+}
+
+
+.card{
+
+background:white;
+border-radius:12px;
+padding:15px;
+margin-bottom:15px;
+box-shadow:0 3px 10px rgba(0,0,0,.1);
+
+}
+
+
+h1{
+
+text-align:center;
+
+}
+
+
+.item{
+
+border-bottom:1px solid #ddd;
+padding:12px 0;
+
+}
+
+
+.codigo{
+
+color:#2563eb;
+font-weight:bold;
+
+}
+
+
+.voltar{
+
+display:block;
+background:#2563eb;
+color:white;
+text-align:center;
+padding:15px;
+border-radius:8px;
+text-decoration:none;
+margin-bottom:15px;
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<a class="voltar" href="app.html">
+⬅ Voltar
+</a>
+
+
+<h1>📋 Relatório do Dia</h1>
+
+
+<div id="lista"></div>
+
+
+</div>
+
+
+
+<script>
+
+
+const API = 
+"https://script.google.com/macros/s/AKfycbw0Htneq-gBaYAcyvgJgR2hQ-0QEgzhYYOXsDW0bIAG4_WbVxewtOT7AFNhqnRE5w8Z8w/exec";
+
+
+
+fetch(API+"?acao=relatorio")
+
+
+.then(res=>res.json())
+
+
+.then(dados=>{
+
+
+let lista=document.getElementById("lista");
+
+
+if(dados.length==0){
+
+lista.innerHTML=
+"<div class='card'>Nenhum recebimento hoje.</div>";
+
+return;
+
+}
+
+
+
+dados.forEach(r=>{
+
+
+lista.innerHTML += `
+
+
+<div class="card">
+
+
+<div class="item">
+
+<b>NF:</b> ${r.nf}
+
+</div>
+
+
+<div class="item">
+
+<div class="codigo">
+Código: ${r.codigo}
+</div>
+
+${r.produto}
+
+</div>
+
+
+<div class="item">
+
+<b>Quantidade:</b> ${r.quantidade}
+
+</div>
+
+
+<div class="item">
+
+<b>Lote:</b> ${r.lote || "-"}
+
+</div>
+
+
+<div class="item">
+
+<b>Validade:</b> ${r.validade || "-"}
+
+</div>
+
+
+<div class="item">
+
+👤 ${r.usuario}
+
+</div>
+
+
+</div>
+
+
+`;
+
+
+});
+
+
+})
+
+
+.catch(()=>{
+
+document.getElementById("lista").innerHTML=
+"Erro ao carregar relatório";
+
+});
+
+
+</script>
+
+
+</body>
+
+</html>
