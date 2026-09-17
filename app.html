@@ -144,9 +144,7 @@ font-weight:bold;
 
 <label>Número da NF</label>
 
-<input 
-id="nf"
-placeholder="Digite o número da NF">
+<input id="nf" placeholder="Digite o número da NF">
 
 
 
@@ -231,10 +229,12 @@ const API_PRODUTOS =
 
 
 
+
+// PESQUISA PRODUTO
+
 document
 .getElementById("pesquisa")
 .addEventListener("input",function(){
-
 
 
 let termo=this.value.trim();
@@ -264,7 +264,6 @@ fetch(API_PRODUTOS + "?termo=" + termo)
 .then(produtos=>{
 
 
-
 produtos.forEach(p=>{
 
 
@@ -274,9 +273,7 @@ let div=document.createElement("div");
 div.className="produto";
 
 
-div.innerHTML=
-
-`
+div.innerHTML=`
 
 <div class="codigo">
 ${p.codigo}
@@ -329,8 +326,7 @@ resultados.appendChild(div);
 
 .catch(()=>{
 
-resultados.innerHTML=
-"Erro ao consultar produtos";
+resultados.innerHTML="Erro ao consultar produtos";
 
 });
 
@@ -340,9 +336,14 @@ resultados.innerHTML=
 
 
 
+
+
+
+// SALVAR RECEBIMENTO
 
 
 function salvar(){
+
 
 
 let mensagem=document.getElementById("mensagem");
@@ -352,6 +353,12 @@ let nf=document.getElementById("nf").value;
 
 
 let quantidade=document.getElementById("quantidade").value;
+
+
+let lote=document.getElementById("lote").value;
+
+
+let validade=document.getElementById("validade").value;
 
 
 
@@ -385,6 +392,41 @@ return;
 
 
 
+
+let dados={
+
+nf:nf,
+
+codigo:produtoSelecionado.codigo,
+
+produto:produtoSelecionado.produto,
+
+quantidade:quantidade,
+
+lote:lote,
+
+validade:validade
+
+};
+
+
+
+
+fetch(API_PRODUTOS,{
+
+method:"POST",
+
+body:JSON.stringify(dados)
+
+})
+
+
+.then(res=>res.text())
+
+
+.then(()=>{
+
+
 mensagem.innerHTML=
 "✓ Recebimento registrado com sucesso!";
 
@@ -393,19 +435,38 @@ mensagem.style.color="#059669";
 
 
 
-console.log({
+document.getElementById("nf").value="";
 
-NF:nf,
+document.getElementById("pesquisa").value="";
 
-Produto:produtoSelecionado,
+document.getElementById("quantidade").value="";
 
-Quantidade:quantidade,
+document.getElementById("lote").value="";
 
-Lote:document.getElementById("lote").value,
+document.getElementById("validade").value="";
 
-Validade:document.getElementById("validade").value
+
+document.getElementById("selecionado").style.display="none";
+
+
+produtoSelecionado=null;
+
+
+})
+
+
+.catch(()=>{
+
+
+mensagem.innerHTML=
+"⚠ Erro ao salvar recebimento";
+
+
+mensagem.style.color="#dc2626";
+
 
 });
+
 
 
 }
