@@ -230,6 +230,7 @@ const API_PRODUTOS =
 
 
 
+
 // PESQUISA PRODUTO
 
 document
@@ -247,9 +248,28 @@ resultados.innerHTML="";
 
 
 
+// LIMPA PRODUTO SE APAGAR A PESQUISA
+
 if(!termo){
 
-return;
+    produtoSelecionado=null;
+
+    document.getElementById("selecionado").style.display="none";
+
+    return;
+
+}
+
+
+
+// AGUARDA 3 CARACTERES PARA PESQUISAR
+
+if(termo.length < 3){
+
+    resultados.innerHTML =
+    '<div class="produto">Digite pelo menos 3 caracteres...</div>';
+
+    return;
 
 }
 
