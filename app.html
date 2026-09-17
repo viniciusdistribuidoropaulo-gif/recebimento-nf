@@ -4,7 +4,9 @@
 <head>
 
 <meta charset="UTF-8">
-   
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Recebimento de NF</title>
 
 
@@ -23,19 +25,47 @@ color:#222;
 
 
 .container{
-width:100%;
-max-width:600px;
-margin:0 auto;
-padding:12px;
+    width:100%;
+    max-width:100%;
+    margin:0;
+    padding:5px;
 }
 
 
 .card{
-background:white;
-border-radius:16px;
-padding:18px;
-box-shadow:0 3px 15px rgba(0,0,0,0.10);
+    background:white;
+    border-radius:12px;
+    padding:12px;
+    box-shadow:0 3px 15px rgba(0,0,0,0.10);
+    width:100%;
 }
+
+
+@media (max-width:600px){
+
+.container{
+    padding:5px;
+}
+
+.card{
+    padding:12px;
+}
+
+h1{
+    font-size:21px;
+}
+
+input{
+    font-size:17px;
+    padding:14px;
+}
+
+button{
+    font-size:18px;
+}
+
+}
+   
 .logo-app{
 
 width:50px;
@@ -133,26 +163,6 @@ background:#1d4ed8;
 text-align:center;
 margin-top:15px;
 font-weight:bold;
-}
-
-@media (max-width:600px){
-
-.container{
-    padding:10px;
-}
-
-.card{
-    padding:15px;
-}
-
-h1{
-    font-size:24px;
-}
-
-button{
-    font-size:18px;
-}
-
 }
 
 </style>
