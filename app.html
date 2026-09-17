@@ -246,6 +246,12 @@ REGISTRAR RECEBIMENTO
 
 </button>
 
+<button id="btnRelatorio" onclick="abrirRelatorio()" style="display:none;">
+
+📋 RELATÓRIO DO DIA
+
+</button>
+
 
 
 <div id="mensagem" class="mensagem"></div>
@@ -263,10 +269,29 @@ REGISTRAR RECEBIMENTO
 
 
 let produtoSelecionado=null;
+
 let usuario = localStorage.getItem("usuario");
+
+
 if(!usuario){
 
     window.location.href="usuario.html";
+
+}
+
+
+// MOSTRA BOTÃO RELATÓRIO SOMENTE PARA VINICIUS
+
+if(usuario.toLowerCase() == "vinicius"){
+
+    document.getElementById("btnRelatorio").style.display="block";
+
+}
+
+
+function abrirRelatorio(){
+
+    window.location.href="relatorio.html";
 
 }
 
