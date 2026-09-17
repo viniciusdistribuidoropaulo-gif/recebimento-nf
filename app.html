@@ -263,7 +263,13 @@ REGISTRAR RECEBIMENTO
 
 
 let produtoSelecionado=null;
+let usuario = localStorage.getItem("usuario");
 
+if(!usuario){
+
+    window.location.href="usuario.html";
+
+}
 
 
 const API_PRODUTOS = 
