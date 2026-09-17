@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Usuário</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial;
+    background:#f3f4f6;
+}
+
+.container{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    width:100%;
+    max-width:400px;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 3px 15px rgba(0,0,0,.15);
+}
+
+input{
+
+    width:100%;
+    padding:15px;
+    margin-top:20px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-size:18px;
+
+}
+
+button{
+
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+    border:0;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+<div class="card">
+
+<h2>👤 Identificação</h2>
+
+<p>Digite seu nome</p>
+
+
+<input id="usuario" placeholder="Nome do usuário">
+
+
+<button onclick="entrar()">
+CONTINUAR
+</button>
+
+
+</div>
+
+</div>
+
+
+<script>
+
+function entrar(){
+
+let nome = document.getElementById("usuario").value;
+
+
+if(!nome){
+
+alert("Digite seu nome");
+
+return;
+
+}
+
+
+localStorage.setItem("usuario",nome);
+
+
+window.location.href="app.html";
+
+
+}
+
+</script>
+
+
+</body>
+
+</html>
