@@ -4,77 +4,68 @@ body{
     font-family:Arial, Helvetica, sans-serif;
 }
 
+
 .container{
+
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     height:100vh;
+
 }
 
+
 .logo{
+
     width:500px;
     max-width:90%;
     margin-bottom:40px;
+
 }
+
 
 h1{
+
     color:white;
     margin-bottom:30px;
+
 }
 
+
+
 .botao{
+
+    display:block;
+
     background:#28a745;
+
     color:white;
+
     text-decoration:none;
-    padding:18px 50px;
+
+    width:280px;
+
+    padding:18px 20px;
+
     border-radius:8px;
+
     font-size:22px;
+
     font-weight:bold;
-}
-.botao{
 
-display:block;
+    text-align:center;
 
-width:280px;
+    cursor:pointer;
 
-margin:25px auto;
-
-padding:15px;
-
-border-radius:8px;
-
-background:#2563eb;
-
-color:white;
-
-font-size:17px;
-
-font-weight:bold;
-
-text-align:center;
-
-text-decoration:none;
-
-cursor:pointer;
+    margin:25px auto;
 
 }
+
 
 
 .botao:hover{
 
-background:#1d4ed8;
-
-}
-
-}
-
-
-.botao:hover{
-
-background:#1d4ed8;
-
-}
-.botao:hover{
     background:#1f8b39;
+
 }
