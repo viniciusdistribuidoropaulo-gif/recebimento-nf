@@ -1,15 +1,203 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
+
 <head>
-    <title>Sistema</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Recebimento de NF</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f3f4f6;
+color:#222;
+}
+
+
+.container{
+max-width:600px;
+margin:30px auto;
+padding:20px;
+}
+
+
+.card{
+background:white;
+border-radius:16px;
+padding:25px;
+box-shadow:0 3px 15px rgba(0,0,0,0.10);
+}
+
+
+h1{
+text-align:center;
+margin-top:0;
+color:#1f2937;
+}
+
+
+label{
+display:block;
+margin-top:18px;
+margin-bottom:7px;
+font-weight:bold;
+}
+
+
+input{
+width:100%;
+padding:13px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+}
+
+
+button{
+
+width:100%;
+margin-top:25px;
+padding:15px;
+border:0;
+border-radius:8px;
+background:#2563eb;
+color:white;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+
+}
+
+
+button:hover{
+background:#1d4ed8;
+}
+
+
+.resultado{
+
+border:1px solid #ddd;
+border-radius:8px;
+margin-top:5px;
+
+}
+
+
+.produto{
+
+padding:12px;
+border-bottom:1px solid #eee;
+cursor:pointer;
+
+}
+
+
+.produto:hover{
+
+background:#f0f7ff;
+
+}
+
+
+.codigo{
+
+font-weight:bold;
+color:#2563eb;
+
+}
+
+
+.selecionado{
+
+margin-top:10px;
+padding:12px;
+background:#ecfdf5;
+border:1px solid #10b981;
+border-radius:8px;
+
+}
+
+
+.mensagem{
+
+text-align:center;
+margin-top:15px;
+font-weight:bold;
+
+}
+
+
+</style>
+
 </head>
+
 
 <body>
 
-<h1>Bem-vindo ao Sistema de Recebimento NF</h1>
 
-<p>Página interna funcionando.</p>
+<div class="container">
 
-</body>
-</html>
+
+<div class="card">
+
+
+<h1>📦 Recebimento de NF</h1>
+
+
+<label>Número da NF</label>
+
+<input id="nf" placeholder="Digite o número da NF">
+
+
+<label>Produto</label>
+
+<input id="pesquisa" placeholder="Digite código ou nome do produto">
+
+
+<div id="resultados" class="resultado"></div>
+
+
+<div id="selecionado" class="selecionado" style="display:none">
+
+<strong>Produto selecionado:</strong>
+
+<div id="produtoNome"></div>
+
+<div id="produtoCodigo"></div>
+
+</div>
+
+
+
+<label>Quantidade</label>
+
+<input type="number" id="quantidade" min="1">
+
+
+<label>Lote</label>
+
+<input id="lote">
+
+
+<label>Validade</label>
+
+<input type="date" id="validade">
+
+
+<button onclick="salvar()">
+REGISTRAR RECEBIMENTO
+</button>
+
+
+<div id="mensagem" class="mensagem"></div>
+
+
+</div>
+
+
+</div>
