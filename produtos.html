@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Produtos</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f3f4f6;
+margin:0;
+}
+
+.container{
+max-width:700px;
+margin:30px auto;
+padding:20px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:16px;
+box-shadow:0 3px 15px #ddd;
+}
+
+h1{
+text-align:center;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-top:10px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+
+button{
+
+margin-top:15px;
+width:100%;
+padding:14px;
+background:#2563eb;
+color:white;
+border:0;
+border-radius:8px;
+font-weight:bold;
+
+}
+
+
+table{
+
+width:100%;
+margin-top:25px;
+border-collapse:collapse;
+
+}
+
+
+th,td{
+
+border:1px solid #ddd;
+padding:10px;
+text-align:left;
+
+}
+
+
+th{
+
+background:#2563eb;
+color:white;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<div class="card">
+
+
+<h1>📦 Cadastro de Produtos</h1>
+
+
+<input id="codigo" placeholder="Código do produto">
+
+
+<input id="produto" placeholder="Nome do produto">
+
+
+<button onclick="adicionar()">
+ADICIONAR PRODUTO
+</button>
+
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>Código</th>
+
+<th>Produto</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="lista">
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+
+function adicionar(){
+
+
+let codigo =
+document.getElementById("codigo").value;
+
+
+let produto =
+document.getElementById("produto").value;
+
+
+
+if(!codigo || !produto){
+
+alert("Preencha os campos");
+
+return;
+
+}
+
+
+
+let tabela =
+document.getElementById("lista");
+
+
+
+let linha =
+tabela.insertRow();
+
+
+
+linha.insertCell(0).innerHTML=codigo;
+
+linha.insertCell(1).innerHTML=produto;
+
+
+
+document.getElementById("codigo").value="";
+
+document.getElementById("produto").value="";
+
+
+}
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
