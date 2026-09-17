@@ -35,17 +35,37 @@ h1{
 .botao{
 
 display:block;
-width:100%;
-margin-top:25px;
+
+width:280px;
+
+margin:25px auto;
+
 padding:15px;
+
 border-radius:8px;
+
 background:#2563eb;
+
 color:white;
+
 font-size:17px;
+
 font-weight:bold;
+
 text-align:center;
+
 text-decoration:none;
+
 cursor:pointer;
+
+}
+
+
+.botao:hover{
+
+background:#1d4ed8;
+
+}
 
 }
 
