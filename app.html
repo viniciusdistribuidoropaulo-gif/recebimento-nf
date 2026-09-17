@@ -6,12 +6,6 @@
 <meta charset="UTF-8">
 
 <title>Recebimento de NF</title>
-  
-<a href="produtos.html">
-<button style="background:#059669;">
-📦 CADASTRAR PRODUTOS
-</button>
-</a>
 
 
 <style>
@@ -20,202 +14,120 @@
 box-sizing:border-box;
 }
 
-
 body{
-
 margin:0;
-
 font-family:Arial,sans-serif;
-
 background:#f3f4f6;
-
 color:#222;
-
 }
-
 
 
 .container{
-
 max-width:600px;
-
 margin:30px auto;
-
 padding:20px;
-
 }
-
 
 
 .card{
-
 background:white;
-
 border-radius:16px;
-
 padding:25px;
-
 box-shadow:0 3px 15px rgba(0,0,0,0.10);
-
 }
-
 
 
 h1{
-
 text-align:center;
-
 margin-top:0;
-
 color:#1f2937;
-
 }
-
 
 
 label{
-
 display:block;
-
 margin-top:18px;
-
 margin-bottom:7px;
-
 font-weight:bold;
-
 }
-
 
 
 input{
-
 width:100%;
-
 padding:13px;
-
 border:1px solid #ccc;
-
 border-radius:8px;
-
 font-size:16px;
-
 }
-
 
 
 .resultado{
-
 border:1px solid #ddd;
-
 border-radius:8px;
-
 margin-top:5px;
-
 overflow:hidden;
-
 }
-
 
 
 .produto{
-
 padding:12px;
-
 cursor:pointer;
-
 border-bottom:1px solid #eee;
-
 background:white;
-
 }
-
 
 
 .produto:hover{
-
 background:#f0f7ff;
-
 }
-
 
 
 .codigo{
-
 font-weight:bold;
-
 color:#2563eb;
-
 }
-
 
 
 .selecionado{
-
 margin-top:10px;
-
 padding:12px;
-
 background:#ecfdf5;
-
 border:1px solid #10b981;
-
 border-radius:8px;
-
 }
-
 
 
 button{
 
 width:100%;
-
 margin-top:25px;
-
 padding:15px;
-
 border:0;
-
 border-radius:8px;
-
 background:#2563eb;
-
 color:white;
-
 font-size:17px;
-
 font-weight:bold;
-
 cursor:pointer;
 
 }
 
 
-
 button:hover{
-
 background:#1d4ed8;
-
 }
-
 
 
 .mensagem{
-
 text-align:center;
-
 margin-top:15px;
-
 font-weight:bold;
-
 }
-
 
 
 </style>
 
-
 </head>
-
 
 
 <body>
@@ -228,7 +140,6 @@ font-weight:bold;
 
 
 <h1>📦 Recebimento de NF</h1>
-
 
 
 <label>Número da NF</label>
@@ -259,7 +170,6 @@ autocomplete="off">
 <div id="produtoNome"></div>
 
 <div id="produtoCodigo"></div>
-
 
 </div>
 
@@ -309,7 +219,6 @@ REGISTRAR RECEBIMENTO
 
 
 
-
 <script>
 
 
@@ -317,25 +226,8 @@ let produtoSelecionado=null;
 
 
 
-const produtos=[
-
-{
-codigo:"306",
-produto:"Produto Exemplo 306"
-},
-
-{
-codigo:"307",
-produto:"Produto Exemplo 307"
-},
-
-{
-codigo:"985",
-produto:"Produto Exemplo 985"
-}
-
-];
-
+const API_PRODUTOS = 
+"https://script.google.com/macros/s/AKfycbw0Htneq-gBaYAcyvgJgR2hQ-0QEgzhYYOXsDW0bIAG4_WbVxewtOT7AFNhqnRE5w8Z8w/exec";
 
 
 
@@ -344,7 +236,8 @@ document
 .addEventListener("input",function(){
 
 
-let termo=this.value.toLowerCase();
+
+let termo=this.value.trim();
 
 
 let resultados=document.getElementById("resultados");
@@ -362,16 +255,17 @@ return;
 
 
 
-produtos
-.filter(p=>
+fetch(API_PRODUTOS + "?termo=" + termo)
 
-p.codigo.includes(termo)
-||
-p.produto.toLowerCase().includes(termo)
 
-)
+.then(res=>res.json())
 
-.forEach(p=>{
+
+.then(produtos=>{
+
+
+
+produtos.forEach(p=>{
 
 
 let div=document.createElement("div");
@@ -418,7 +312,6 @@ document.getElementById("produtoCodigo").innerHTML=
 "Código: "+p.codigo;
 
 
-
 };
 
 
@@ -430,14 +323,26 @@ resultados.appendChild(div);
 });
 
 
+
+})
+
+
+.catch(()=>{
+
+resultados.innerHTML=
+"Erro ao consultar produtos";
+
+});
+
+
 });
 
 
 
 
 
-function salvar(){
 
+function salvar(){
 
 
 let mensagem=document.getElementById("mensagem");
@@ -462,9 +367,7 @@ return;
 
 if(!produtoSelecionado){
 
-
 mensagem.innerHTML="⚠ Selecione um produto";
-
 
 return;
 
@@ -474,9 +377,7 @@ return;
 
 if(!quantidade){
 
-
 mensagem.innerHTML="⚠ Informe a quantidade";
-
 
 return;
 
@@ -510,9 +411,7 @@ Validade:document.getElementById("validade").value
 }
 
 
-
 </script>
-
 
 
 </body>
